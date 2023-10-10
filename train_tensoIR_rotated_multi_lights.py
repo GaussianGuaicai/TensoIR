@@ -259,7 +259,7 @@ def reconstruction(args):
         light_idx_train = light_idx_filtered[rays_idx].to(device)
         rgb_with_brdf_train = rgb_train
 
-
+        torch.cuda.empty_cache()
         ret_kw = renderer(  
                             rays=rays_train,    # [batch_size, 6]
                             normal_gt=None,     # [batch_size, 3]

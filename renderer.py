@@ -210,6 +210,7 @@ def evaluation_iter_TensoIR(
 
 
     for idx in range(num_test):
+        torch.cuda.empty_cache()
         if test_all:
             print(f"test {idx} / {num_test}")
         item = test_dataset.__getitem__(idx * test_duration)
@@ -580,6 +581,7 @@ def evaluation_iter_TensoIR_simple(
 
 
     for idx in range(num_test):
+        torch.cuda.empty_cache()
         item = test_dataset.__getitem__(idx * test_duration)
         rays = item['rays']                 # [H*W, 6]
         gt_rgb = item['rgbs'][0]            # [H*W, 3]
@@ -878,6 +880,7 @@ def evaluation_iter_TensoIR_general_multi_lights(
 
 
     for idx in range(num_test):
+        torch.cuda.empty_cache()
         item = test_dataset.__getitem__(idx * test_duration)
         # generate a random number between [0, tensoIR.light_num)
         if light_idx_to_test >= 0:
