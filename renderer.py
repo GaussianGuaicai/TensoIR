@@ -51,6 +51,7 @@ def compute_rescale_ratio(tensoIR, dataset, sampled_num=20):
     three_channel_ratio, _ = (gt_albedo_all / albedo_map_all.clamp(min=1e-6)).median(dim=0)
     print("single channel rescale ratio: ", single_channel_ratio)
     print("three channels rescale ratio: ", three_channel_ratio)
+    torch.cuda.empty_cache()
     return single_channel_ratio, three_channel_ratio
 
 
@@ -226,6 +227,7 @@ def evaluation_iter_TensoIR(
         
         chunk_idxs = torch.split(torch.arange(rays.shape[0]), args.batch_size_test)
         for chunk_idx in chunk_idxs:
+            torch.cuda.empty_cache()
             ret_kw= renderer(   
                                 rays[chunk_idx], 
                                 None, # not used
@@ -594,6 +596,7 @@ def evaluation_iter_TensoIR_simple(
         
         chunk_idxs = torch.split(torch.arange(rays.shape[0]), args.batch_size_test)
         for chunk_idx in chunk_idxs:
+            torch.cuda.empty_cache()
             ret_kw= renderer(   
                                 rays[chunk_idx], 
                                 None, # not used
@@ -900,6 +903,7 @@ def evaluation_iter_TensoIR_general_multi_lights(
         
         chunk_idxs = torch.split(torch.arange(rays.shape[0]), args.batch_size_test)
         for chunk_idx in chunk_idxs:
+            torch.cuda.empty_cache()
             ret_kw= renderer(   
                                 rays[chunk_idx], 
                                 None, # not used
