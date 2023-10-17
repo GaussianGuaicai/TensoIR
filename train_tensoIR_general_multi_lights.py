@@ -190,7 +190,7 @@ def reconstruction(args):
     os.system(f'cp {args.config} {logfolder}')
 
     # init parameters
-    aabb = train_dataset.scene_bbox.to(device)
+    aabb:torch.Tensor = train_dataset.scene_bbox.to(device)
     reso_cur = N_to_reso(args.N_voxel_init, aabb)  # number of voxels in each direction
     nSamples = min(args.nSamples, cal_n_samples(reso_cur, args.step_ratio))
 
@@ -201,7 +201,7 @@ def reconstruction(args):
         tensoIR = eval(args.model_name)(**kwargs)
         tensoIR.load(ckpt)
     else:
-        tensoIR = eval(args.model_name)(aabb, 
+        tensoIR:TensorVMSplit  = eval(args.model_name)(aabb, 
                                         reso_cur, 
                                         device,
                                         density_n_comp=n_lamb_sigma, 

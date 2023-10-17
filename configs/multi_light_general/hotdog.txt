@@ -1,8 +1,8 @@
 dataset_name = tensoIR_unknown_general_multi_lights
-datadir = ./data/TensoIR_Synthetic/hotdog
-hdrdir = ./data/Environment_Maps/high_res_envmaps_2k
+datadir = /mnt/share/gaussian-truenas/Library/Dataset/TensorIR/hotdog
+hdrdir = /mnt/share/gaussian-truenas/Library/HDRI/From TensorIR/Environment_Maps/high_res_envmaps_2k
 expname = hotdog_ds_1
-basedir = ./log/log_general_multi_lights
+basedir = /mnt/share/gaussian-truenas/Outputs/TensoIR Outputs
 add_timestamp = 1
 downsample_train = 1
 downsample_test = 1
